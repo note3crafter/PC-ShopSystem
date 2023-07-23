@@ -5,5 +5,5 @@ A Shop Plugin for Minecraft Servers!
 This Plugin needs [ProjectCore](https://github.com/note3crafter/ProjectCore) to run!
 
 # Preview
-<img src="https://github.com/note3crafter/PC-ShopSystem/blob/main/ShopSystem.png" height="128" width="260" align="middle"></img></h1>
+<img src="https://github.com/note3crafter/PC-ShopSystem/blob/main/ShopSystem.png" height="256" width="520" align="middle"></img></h1>
 
