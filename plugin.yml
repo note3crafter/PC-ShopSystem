@@ -1,0 +1,28 @@
+name: PC-ShopSystem
+main: TheNote\ShopSystem\Main
+version: 1.0.0
+api:
+  - 5.3.0
+author: TheNote/Rudolf2000/note3crafter
+description: PC-ShopSystem v.1.0.0
+softdepend:
+  - ProjectCore
+permissions:
+   economy.sell.create:
+     description: "create a sell sign"
+     default: op
+   economy.sell.sell:
+     description: "sell a item"
+     default: op
+   economy.sell.remove:
+     description: "remove a sell sign"
+     default: op
+   economy.shop.create:
+     description: "create a shop sign"
+     default: op
+   economy.shop.buy:
+     description: "buy a item"
+     default: op
+   economy.shop.remove:
+     description: "remove a shop sign"
+     default: op
