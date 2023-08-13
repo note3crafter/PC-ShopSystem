@@ -18,6 +18,9 @@ use TheNote\ShopSystem\events\EconomyShop;
 
 class Main extends PluginBase
 {
+    private Config $shopSign;
+    private Config $sellSign;
+
     public function onLoad(): void
     {
         $projectcore = $this->getServer()->getPluginManager()->getPlugin("ProjectCore");
