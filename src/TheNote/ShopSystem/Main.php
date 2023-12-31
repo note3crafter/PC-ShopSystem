@@ -18,8 +18,8 @@ use TheNote\ShopSystem\events\EconomyShop;
 
 class Main extends PluginBase
 {
-    private Config $shopSign;
-    private Config $sellSign;
+    public Config $shopSign;
+    public Config $sellSign;
 
     public function onLoad(): void
     {
@@ -58,6 +58,7 @@ class Main extends PluginBase
         $this->getServer()->getPluginManager()->registerEvents(new EconomySell($this), $this);
         $this->getServer()->getPluginManager()->registerEvents(new EconomyShop($this), $this);
     }
+
     public function getLang(string $player, $langkey) {
         $api = new CoreAPI();
         $lang = new Config($this->getDataFolder() . "Lang/Lang" . $api->getUser($player, "language") . ".json", Config::JSON);
