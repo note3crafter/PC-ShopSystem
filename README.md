@@ -1,6 +1,8 @@
 # PC-ShopSystem
 A Shop Plugin for Minecraft Servers! 
 
+Use Wax to protect the Signs for edits!
+
 # NOTICE
 This Plugin needs [ProjectCore](https://github.com/note3crafter/ProjectCore) to run!
 
