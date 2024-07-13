@@ -1,10 +1,10 @@
 name: PC-ShopSystem
 main: TheNote\ShopSystem\Main
-version: 1.0.0
+version: 1.0.2
 api:
-  - 5.3.0
+  - 5.13.0
 author: TheNote/Rudolf2000/note3crafter
-description: PC-ShopSystem v.1.0.0
+description: PC-ShopSystem v.1.0.2
 softdepend:
   - ProjectCore
 permissions:

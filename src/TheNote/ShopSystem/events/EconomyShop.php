@@ -10,13 +10,18 @@
 
 namespace TheNote\ShopSystem\events;
 
+use pocketmine\block\BaseSign;
+use pocketmine\block\tile\Sign;
 use pocketmine\block\utils\SignText;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\block\SignChangeEvent;
+use pocketmine\event\server\DataPacketSendEvent;
 use pocketmine\item\LegacyStringToItemParser;
 use pocketmine\item\StringToItemParser;
+use pocketmine\network\mcpe\protocol\OpenSignPacket;
+use pocketmine\network\mcpe\protocol\types\BlockPosition;
 use pocketmine\utils\Config;
 use pocketmine\event\block\BlockPlaceEvent;
 use TheNote\core\CoreAPI;
@@ -107,6 +112,7 @@ class EconomyShop implements Listener
         if ($event->getAction() !== PlayerInteractEvent::RIGHT_CLICK_BLOCK) {
             return;
         }
+
         $block = $event->getBlock();
         $position = $block->getPosition();
         $loc = $position->getX() . ":" . $position->getY() . ":" . $position->getZ() . ":" . $event->getPlayer()->getWorld()->getFolderName();
@@ -123,6 +129,9 @@ class EconomyShop implements Listener
                 $event->cancel();
                 return;
             }
+
+            $event->cancel();
+
             if (!$player->getInventory()->canAddItem(StringToItemParser::getInstance()->parse($shop['itemName'])->setCount((int)$shop['amount']))) {
                 $player->sendTip($api->getCommandPrefix("Error") . $this->plugin->getLang($player->getName(), "ShopInvFull"));
                 return;

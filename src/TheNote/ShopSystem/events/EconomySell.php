@@ -10,14 +10,18 @@
 
 namespace TheNote\ShopSystem\events;
 
+use pocketmine\block\BaseSign;
+use pocketmine\block\Block;
 use pocketmine\block\utils\SignText;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\block\BlockPlaceEvent;
+use pocketmine\event\server\DataPacketSendEvent;
 use pocketmine\item\LegacyStringToItemParser;
 use pocketmine\item\StringToItemParser;
+use pocketmine\network\mcpe\protocol\OpenSignPacket;
 use pocketmine\utils\Config;
 use TheNote\core\CoreAPI;
 use TheNote\core\listener\ScoreBoardListner;
@@ -41,7 +45,6 @@ class EconomySell implements Listener
     {
         $api = new CoreAPI();
         $result = $this->tagExists($event->getNewText()->getLine(0));
-
         if ($result !== false) {
             $player = $event->getPlayer();
             if (!$player->hasPermission("economy.sell.create")) {
@@ -113,18 +116,18 @@ class EconomySell implements Listener
         if (isset($this->sell[$loc])) {
             $sell = $this->sell[$loc];
             $player = $event->getPlayer();
-
             if ($player->getGamemode()->getEnglishName() === "Creative") {
                 $player->sendTip($api->getCommandPrefix("Error") . $this->plugin->getLang($player->getName(), "SellErrorCreative"));
                 $event->cancel();
                 return;
             }
-
             if (!$player->hasPermission("economy.sell.sell")) {
                 $player->sendTip($api->getCommandPrefix("Error") . $this->plugin->getLang($player->getName(), "SellNoPermSell"));
                 $event->cancel();
                 return;
             }
+            $event->cancel();
+
             $cnt = 0;
 
             foreach ($player->getInventory()->getContents() as $item) {
